@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * Created by Donghua.Chen on 2018/4/19.
+ * Created by yuqishun on 2018/4/19.
  */
 @Configuration
 public class DruidDBConfig {
@@ -79,10 +79,10 @@ public class DruidDBConfig {
         DruidDataSource datasource = new DruidDataSource();
 
         datasource.setUrl(this.dbUrl);
+
         datasource.setUsername(username);
         datasource.setPassword(password);
         datasource.setDriverClassName(driverClassName);
-
         //configuration
         datasource.setInitialSize(initialSize);
         datasource.setMinIdle(minIdle);
