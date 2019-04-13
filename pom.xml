@@ -4,11 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.qishun</groupId>
-	<artifactId>qishunstudy</artifactId>
+	<artifactId>bnb-seach-index</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>bnb-web</module>
+	</modules>
+	<packaging>pom</packaging>
 
-	<name>qishunstudy</name>
+	<name></name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>

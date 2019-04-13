@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Created by Administrator on 2017/8/16.
+ * Created by qs.yu on 2019/4/12.
  */
 @Controller
 @RequestMapping(value = "/user")
@@ -19,13 +19,13 @@ public class UserController {
     private UserService userService;
 
     @ResponseBody
-    @PostMapping("/add")
+    @PostMapping("/adduser")
     public int addUser(UserDomain user){
         return userService.addUser(user);
     }
 
     @ResponseBody
-    @GetMapping("/all")
+    @GetMapping("/listusers")
     public Object findAllUser(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,

@@ -5,7 +5,7 @@ import com.qishun.qishunstudy.model.UserDomain;
 import java.util.List;
 
 /**
- * Created by Administrator on 2018/4/19.
+ * Created by qs.yu on 2018/4/19.
  */
 public interface UserService {
 

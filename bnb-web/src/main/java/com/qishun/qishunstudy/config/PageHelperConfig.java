@@ -10,7 +10,7 @@ import java.util.Properties;
 
 /**
  * 分页插件的配置
- * Created by Donghua.Chen on 2018/4/20.
+ * Created by qs.yu on 2019/4/12.
  */
 @Configuration
 public class PageHelperConfig {

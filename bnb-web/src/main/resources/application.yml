@@ -52,8 +52,6 @@ spring:
       timeout: 0
 
 
-
-
 # 配置mybatis
 mybatis:
   config-location: classpath:config/mybais_config.xml

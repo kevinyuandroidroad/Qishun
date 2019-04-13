@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 /**
- * 2018/4/19 18:46
+ * Created by qs.yu on 2019/4/12.
  */
 @Configuration
 @MapperScan("com.qishun.qishunstudy.dao")
