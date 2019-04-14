@@ -9,7 +9,7 @@
         user_id as userId,user_name as userName,password,phone
     </sql>
 
-    <insert id="insert" parameterType="com.qishun.qishunstudy.model.UserDomain">
+    <insert id="insert" parameterType="com.qishun.qishunstudy.model.SysUsers">
         INSERT INTO
         <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -26,7 +26,7 @@
         </trim>
     </insert>
 
-    <select id="selectUsers" resultType="com.qishun.qishunstudy.model.UserDomain">
+    <select id="selectUsers" resultType="com.qishun.qishunstudy.model.SysUsers">
         SELECT
         <include refid="BASE_COLUMN"/>
         FROM

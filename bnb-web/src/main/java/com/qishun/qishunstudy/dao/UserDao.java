@@ -1,15 +1,14 @@
 package com.qishun.qishunstudy.dao;
 
-import com.qishun.qishunstudy.model.UserDomain;
-
+import com.qishun.qishunstudy.model.SysUsers;
 import java.util.List;
 
 public interface UserDao {
 
 
-    int insert(UserDomain record);
+    int insert(SysUsers record);
 
 
 
-    List<UserDomain> selectUsers();
+    List<SysUsers> selectUsers();
 }

@@ -1,6 +1,6 @@
 package com.qishun.qishunstudy.service;
 
-import com.qishun.qishunstudy.model.UserDomain;
+import com.qishun.qishunstudy.model.SysUsers;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface UserService {
 
-    int addUser(UserDomain user);
+    int addUser(SysUsers user);
 
-    List<UserDomain> findAllUser(int pageNum, int pageSize);
+    List<SysUsers> findAllUser(int pageNum, int pageSize);
 }

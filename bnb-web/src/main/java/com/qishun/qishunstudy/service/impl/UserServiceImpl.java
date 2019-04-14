@@ -2,7 +2,7 @@ package com.qishun.qishunstudy.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.qishun.qishunstudy.dao.UserDao;
-import com.qishun.qishunstudy.model.UserDomain;
+import com.qishun.qishunstudy.model.SysUsers;
 import com.qishun.qishunstudy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;//这里会报错，但是并不会影响
 
     @Override
-    public int addUser(UserDomain user) {
+    public int addUser(SysUsers user) {
 
         return userDao.insert(user);
     }
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
      * pageSize 每页显示的数据条数
      * */
     @Override
-    public List<UserDomain> findAllUser(int pageNum, int pageSize) {
+    public List<SysUsers> findAllUser(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
         return userDao.selectUsers();

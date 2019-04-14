@@ -1,6 +1,6 @@
 package com.qishun.qishunstudy;
 
-import com.qishun.qishunstudy.model.UserDomain;
+import com.qishun.qishunstudy.model.SysUsers;
 import com.qishun.qishunstudy.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +19,8 @@ public class QishunstudyApplicationTests {
 
 	@Test
 	public void contextLoads() {
-          List<UserDomain> userDomains= service.findAllUser(1,3);
-		for (UserDomain user:userDomains) {
+          List<SysUsers> SysUserss= service.findAllUser(1,3);
+		for (SysUsers user:SysUserss) {
 			System.out.println(user.toString());
 		}
 
