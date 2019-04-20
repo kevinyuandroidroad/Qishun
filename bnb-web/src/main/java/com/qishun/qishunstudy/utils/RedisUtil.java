@@ -1,7 +1,12 @@
 package com.qishun.qishunstudy.utils;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import redis.clients.jedis.BinaryClient.LIST_POSITION;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.SortingParams;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,13 +15,6 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import redis.clients.jedis.BinaryClient.LIST_POSITION;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.SortingParams;
 
 /**
  * redicache 工具类
@@ -27,6 +25,67 @@ public class RedisUtil {
 
     @Autowired
     private JedisPool jedisPool;
+
+    /**
+     * 序列化对象
+     *
+     * @param obj
+     * @return 对象需实现Serializable接口
+     */
+    public static byte[] ObjTOSerialize(Object obj) {
+        ObjectOutputStream oos = null;
+        ByteArrayOutputStream byteOut = null;
+        try {
+            byteOut = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(byteOut);
+            oos.writeObject(obj);
+            byte[] bytes = byteOut.toByteArray();
+            return bytes;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    /**
+     * 反序列化对象
+     *
+     * @param bytes
+     * @return 对象需实现Serializable接口
+     */
+    public static Object unserialize(byte[] bytes) {
+        ByteArrayInputStream bais = null;
+        try {
+            //反序列化
+            bais = new ByteArrayInputStream(bytes);
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return ois.readObject();
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    /**
+     * 返还到连接池
+     *
+     * @param jedisPool
+     * @param jedis
+     */
+    public static void returnResource(JedisPool jedisPool, Jedis jedis) {
+        if (jedis != null) {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    public static void main(String[] args) {
+		/*JedisPool jedisPool = new JedisPool(null,"localhost",6379,100,"123456");
+		Jedis jedis = jedisPool.getResource();
+		//r.get("", RedisConstants.datebase4);
+		jedis.select(RedisConstants.datebase4);
+		Set<String> str =  jedis.keys("*");
+		for (String string : str) {
+			System.out.println(string);
+		}*/
+    }
 
     /**
      * 通过key获取储存在redis中的value
@@ -2045,6 +2104,13 @@ public class RedisUtil {
         return res;
     }
 
+    // public static RedisUtil getRu() {
+    // return ru;
+    // }
+    //
+    // public static void setRu(RedisUtil ru) {
+    // RedisUtil.ru = ru;
+    // }
 
     /**
      * <p>
@@ -2066,75 +2132,6 @@ public class RedisUtil {
             returnResource(jedisPool, jedis);
         }
         return res;
-    }
-
-    /**
-     * 序列化对象
-     *
-     * @param obj
-     * @return 对象需实现Serializable接口
-     */
-    public static byte[] ObjTOSerialize(Object obj) {
-        ObjectOutputStream oos = null;
-        ByteArrayOutputStream byteOut = null;
-        try {
-            byteOut = new ByteArrayOutputStream();
-            oos = new ObjectOutputStream(byteOut);
-            oos.writeObject(obj);
-            byte[] bytes = byteOut.toByteArray();
-            return bytes;
-        } catch (Exception e) {
-        }
-        return null;
-    }
-
-    /**
-     * 反序列化对象
-     *
-     * @param bytes
-     * @return 对象需实现Serializable接口
-     */
-    public static Object unserialize(byte[] bytes) {
-        ByteArrayInputStream bais = null;
-        try {
-            //反序列化
-            bais = new ByteArrayInputStream(bytes);
-            ObjectInputStream ois = new ObjectInputStream(bais);
-            return ois.readObject();
-        } catch (Exception e) {
-        }
-        return null;
-    }
-
-    /**
-     * 返还到连接池
-     *
-     * @param jedisPool
-     * @param jedis
-     */
-    public static void returnResource(JedisPool jedisPool, Jedis jedis) {
-        if (jedis != null) {
-            jedisPool.returnResource(jedis);
-        }
-    }
-
-    // public static RedisUtil getRu() {
-    // return ru;
-    // }
-    //
-    // public static void setRu(RedisUtil ru) {
-    // RedisUtil.ru = ru;
-    // }
-
-    public static void main(String[] args) {
-		/*JedisPool jedisPool = new JedisPool(null,"localhost",6379,100,"123456");
-		Jedis jedis = jedisPool.getResource();
-		//r.get("", RedisConstants.datebase4);
-		jedis.select(RedisConstants.datebase4);
-		Set<String> str =  jedis.keys("*");
-		for (String string : str) {
-			System.out.println(string);
-		}*/
     }
 
 }
