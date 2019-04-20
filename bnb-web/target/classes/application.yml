@@ -1,0 +1,73 @@
+
+# 项目短口号
+server:
+  port: 8080
+
+# 配置数据源
+spring:
+  datasource:
+    name:  test
+    url: jdbc:mysql://140.143.144.28:3306/wedding?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    maxOpenPreparedStatements: 20
+  kafka:
+    consumer:
+      bootstrap-servers: 140.143.144.28:9092
+      group-id: test
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      bootstrap-servers: 140.143.144.28:9092
+
+
+# 配置mybatis
+mybatis:
+  config-location: classpath:config/mybais_config.xml
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.qishun.qishunstudy.model
+
+mapper:
+  mappers:  com.qishun.qishunstudy.dao
+  not-empty: false
+  identity: MYSQL
+
+# pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    pageSizeZero: true
+    params: count=countSql
+
+
+
+
+
+
+
+
+
