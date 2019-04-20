@@ -137,7 +137,7 @@ public class BeanUtil {
                         if (setMethod == null || !Modifier.isPublic(setMethod.getModifiers()))
                             break;
                         setMethod.invoke(objFrom, new Date());
-                    }else if (fieldFrom.getName().equals("version")) {
+                    } else if (fieldFrom.getName().equals("version")) {
                         Method setMethod = getMethod(classFrom, fieldFrom.getName(), "set");
                         if (setMethod == null || !Modifier.isPublic(setMethod.getModifiers()))
                             break;

@@ -21,7 +21,7 @@ public class PageHelperConfig {
 
 
     @Bean
-    public PageInterceptor pageInterceptor(){
+    public PageInterceptor pageInterceptor() {
         PageInterceptor pageInterceptor = new PageInterceptor();
         Properties properties = new Properties();
         properties.setProperty("helperDialect", helperDialect);

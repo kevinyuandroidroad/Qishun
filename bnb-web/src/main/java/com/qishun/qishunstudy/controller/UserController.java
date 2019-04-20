@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,7 @@ import org.slf4j.LoggerFactory;
  */
 @Controller
 @RequestMapping(value = "/user")
-public class UserController extends BaseController<SysUsers,Integer>{
+public class UserController extends BaseController<SysUsers, Integer> {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -29,7 +30,7 @@ public class UserController extends BaseController<SysUsers,Integer>{
 
     @ResponseBody
     @PostMapping("/adduser")
-    public int addUser(SysUsers user){
+    public int addUser(SysUsers user) {
         return userService.addUser(user);
     }
 
@@ -39,17 +40,17 @@ public class UserController extends BaseController<SysUsers,Integer>{
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
-                    int pageSize){
+                    int pageSize) {
         //开始分页
-        PageHelper.startPage(pageNum,pageSize);
-        return userService.findAllUser(pageNum,pageSize);
+        PageHelper.startPage(pageNum, pageSize);
+        return userService.findAllUser(pageNum, pageSize);
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.GET)
     public String sendKafka() {
         try {
             String message = "messagesss";
-            logger.info("kafka的消息={}",message);
+            logger.info("kafka的消息={}", message);
             kafkaTemplate.send("test", "key", message);
             logger.info("发送kafka成功.");
         } catch (Exception e) {
